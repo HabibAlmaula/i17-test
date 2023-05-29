@@ -13,55 +13,51 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   void _onButtonClicked(OnButtonClicked event, Emitter<MainState> emit) {
     final input = int.parse(event.input);
-    switch (input) {
+    switch (event.button) {
       case 1:
-        {
-          List<dynamic> temp = [];
-          for (int i = 1; i <= input; i++) {
-            temp.add(i);
-          }
-          emit(state.copyWith(result: temp));
-          break;
+        List<dynamic> temp = [];
+        for (int i = 1; i <= input; i++) {
+          temp.add(i);
         }
-      case 2:
-        {
-          List<dynamic> temp = [];
-          for (int i = 1; i <= input; i++) {
-            temp.add(i);
-          }
-          for (int i = input - 1; i >= 1; i--) {
-            temp.add(i);
-          }
-          emit(state.copyWith(result: temp));
-          break;
-        }
-      case 3:
-        {
-          int start = 1;
-          List<dynamic> temp = [];
-          for (int i = 0; i < input; i++) {
-            int result = start + (i * 11);
-            temp.add(result);
-          }
-          emit(state.copyWith(result: temp));
-          break;
-        }
-      case 4:
-        {
-          List<dynamic> temp = [];
+        emit(state.copyWith(result: temp));
+        break;
 
-          for (int i = 1; i <= input; i++) {
-            if (i % 5 == 0) {
-              temp.add('LIMA');
-            } else if (i % 7 == 0) {
-              temp.add('TUJUH');
-            } else {
-              temp.add(i);
-            }
-          }
-          emit(state.copyWith(result: temp));
-          break;
+      case 2:
+        List<dynamic> temp = [];
+        for (int i = 1; i <= input; i++) {
+          temp.add(i);
         }
+        for (int i = input - 1; i >= 1; i--) {
+          temp.add(i);
+        }
+        emit(state.copyWith(result: temp));
+        break;
+
+      case 3:
+        int start = 1;
+        List<dynamic> temp = [];
+        for (int i = 0; i < input; i++) {
+          int result = start + (i * 11);
+          temp.add(result);
+        }
+        emit(state.copyWith(result: temp));
+        break;
+
+      case 4:
+        List<dynamic> temp = [];
+
+        for (int i = 1; i <= input; i++) {
+          if (i % 5 == 0) {
+            temp.add('LIMA');
+          } else if (i % 7 == 0) {
+            temp.add('TUJUH');
+          } else {
+            temp.add(i);
+          }
+        }
+        emit(state.copyWith(result: temp));
+        break;
+
       default:
         break;
     }

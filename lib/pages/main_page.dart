@@ -21,9 +21,14 @@ class MainPage extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomFormField(
+                      inputType: TextInputType.number,
                       controller: _inputController,
                       isRemovable: true,
-                      onChange: (query)=> (query.isEmpty) ? ,
+                      onChange: (query) {
+                        if (query.isEmpty) {
+                          context.read<MainBloc>().add(OnReset());
+                        }
+                      },
                     ),
                     const SizedBox(
                       height: 18.0,
@@ -59,9 +64,13 @@ class MainPage extends StatelessWidget {
                                               color: Colors.white),
                                         ),
                                       ),
-                                      onTap: () => context.read<MainBloc>().add(
+                                      onTap: () {
+                                        context.read<MainBloc>().add(OnReset());
+                                        context.read<MainBloc>().add(
                                           OnButtonClicked(
-                                              input: _inputController.text))),
+                                              input: _inputController.text,
+                                              button: data));
+                                      }),
                                 ),
                               ),
                             );
